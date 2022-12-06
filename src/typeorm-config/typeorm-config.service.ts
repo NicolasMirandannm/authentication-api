@@ -7,7 +7,7 @@ import * as path from 'path';
 export class TypeOrmConfigService implements TypeOrmOptionsFactory {
     constructor(private readonly configService: ConfigService) {}
 
-    public createTypeOrmOptions(connectionName?: string): TypeOrmModuleOptions | Promise<TypeOrmModuleOptions> {
+    public createTypeOrmOptions(connectionName?: string): TypeOrmModuleOptions {
         const connections = {
             postgres: {
                 name: 'postgres',
