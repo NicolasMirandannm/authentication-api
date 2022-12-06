@@ -1,10 +1,12 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+// import { Module } from '@nestjs/common';
+// import {TypeOrmModule } from '@nestjs/typeorm'
 
-@Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
-})
-export class AppModule {}
+// @Module({
+//   imports: [TypeOrmModule.forRootAsync({
+//     name:'postgres',
+//     useClass:
+//   })],
+//   controllers: [],
+//   providers: [],
+// })
+// export class AppModule {}
