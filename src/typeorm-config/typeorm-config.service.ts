@@ -18,8 +18,11 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
                 password: this.configService.get('POSTGRES_PASSWORD'),
                 database: this.configService.get('POSTGRES_DATABASE'),
                 schema: this.configService.get('POSTGRES_SCHEMA'),
+                serviceName: this.configService.get('POSTGRES_SERVICE_NAME'),
                 entities: [path.join(__dirname + '/../**/*.entity{.ts,.js}')],
-                synchronize: true,
+                migrations: [path.join(__dirname + '/../db/migration/*{.ts, .js}')],
+                synchronize: true, // setar synchronize para false em ambientes de produção
+                logging: true
             }
         };
         return connections[connectionName] ? connections[connectionName] : connections.postgres
