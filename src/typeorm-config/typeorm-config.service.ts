@@ -20,11 +20,15 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
                 schema: this.configService.get('POSTGRES_SCHEMA'),
                 serviceName: this.configService.get('POSTGRES_SERVICE_NAME'),
                 entities: [path.join(__dirname + '/../**/*.entity{.ts,.js}')],
-                migrations: [path.join(__dirname + '/../db/migration/*{.ts, .js}')],
+                migrations: [path.join(__dirname + '/../**/migration/*{.ts, .js}')],
                 synchronize: true, // setar synchronize para false em ambientes de produção
-                logging: true
+                logging: true,
+                cli: {
+                    migrationsDir: 'src/db/migration'
+                }
             }
         };
+        console.log(connections.postgres.entities)
         return connections[connectionName] ? connections[connectionName] : connections.postgres
     }
 }
