@@ -15,7 +15,7 @@ export class UserRepository {
     public async create(user: CreateUserDto): Promise<UserEntity> {
         try {   
             const encryptedPassword = {...user, password: 'senha criptografada'}
-            const newUser = await this.userRep.create(encryptedPassword);
+            const newUser = await this.userRep.create(encryptedPassword);   
             return await this.userRep.save(newUser)
         } catch (error) {
             this.logger.error(error.message ||'Ocorreu um erro ao tentar criar um novo usuário');

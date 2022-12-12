@@ -22,7 +22,6 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
                 entities: [path.join(__dirname + '/../**/*.entity{.ts,.js}')],
                 migrations: [path.join(__dirname + '/../**/migration/*{.ts, .js}')],
                 synchronize: true, // setar synchronize para false em ambientes de produção
-                logging: true,
                 cli: {
                     migrationsDir: 'src/db/migration'
                 }

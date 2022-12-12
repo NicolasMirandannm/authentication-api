@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import {TypeOrmModule } from '@nestjs/typeorm'
+import { UserModule } from './app/users/user.module';
 import { ConfigModule } from './config/config.module';
 import { TypeOrmConfigModule } from './typeorm-config/typeorm-config.module';
 import { TypeOrmConfigService } from './typeorm-config/typeorm-config.service';
@@ -9,9 +10,10 @@ import { TypeOrmConfigService } from './typeorm-config/typeorm-config.service';
     ConfigModule,
     TypeOrmConfigModule,
     TypeOrmModule.forRootAsync({
-        name: 'postgres',
+        name: 'default',
         useClass: TypeOrmConfigService
-    })
+    }),
+    UserModule
   ],
   controllers: [],
   providers: [],
