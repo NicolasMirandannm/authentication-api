@@ -27,7 +27,6 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
                 }
             }
         };
-        console.log(connections.postgres.entities)
         return connections[connectionName] ? connections[connectionName] : connections.postgres
     }
 }
