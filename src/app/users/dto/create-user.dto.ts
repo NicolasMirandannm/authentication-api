@@ -1,6 +1,6 @@
 import { IsEmail } from "class-validator";
 import { IsPhoneNumber, IsString, Matches, MaxLength, MinLength } from "class-validator";
-import { UserEntity } from "src/models/user.entity";
+import { UserEntity } from "../../../models/user.entity";
 
 export class CreateUserDto extends UserEntity {
 

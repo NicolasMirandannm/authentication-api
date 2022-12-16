@@ -9,6 +9,6 @@ export class UserController {
 
   @Post('create')
   async userRegister(@Body() user: CreateUserDto): Promise<UserEntity> {
-    return this.createUser.exec(user);
+    return await this.createUser.exec(user);
   }
 }
