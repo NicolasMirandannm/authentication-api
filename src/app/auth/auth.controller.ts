@@ -1,5 +1,12 @@
-import { Controller } from '@nestjs/common';
-import { AuthService } from './auth.service';
+import { Controller, Post, HttpCode, HttpStatus } from '@nestjs/common';
 
-@Controller('auth')
-export class AuthController {}
+@Controller()
+export class AuthController {
+  // constructor() {}
+
+  @Post('login')
+  @HttpCode(HttpStatus.OK)
+  public login(): string {
+    return 'x';
+  }
+}
