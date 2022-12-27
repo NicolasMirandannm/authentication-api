@@ -1,8 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 
 @Injectable()
 export class AuthService {
   validateUser(login: string, password: string) {
-    return 'senha';
+    console.log('teste');
+    throw new InternalServerErrorException('not implemented');
   }
 }
