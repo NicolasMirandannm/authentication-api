@@ -1,6 +1,7 @@
 import {
   BadRequestException,
   Injectable,
+  InternalServerErrorException,
   Logger,
   NotFoundException,
 } from '@nestjs/common';
@@ -37,13 +38,15 @@ export class UserRepository {
 
   public async findUserByEmail(email: string): Promise<UserEntity> {
     try {
-      const user = await this.userRep.findOneByOrFail({
+      const user = await this.userRep.findOneBy({
         email,
       });
       return user;
     } catch (error) {
       this.logger.error(error?.message);
-      throw new NotFoundException('Usuário não encontrado.');
+      throw new InternalServerErrorException(
+        'Ocorreu um erro ao buscas usuário na base de dados.',
+      );
     }
   }
 }
