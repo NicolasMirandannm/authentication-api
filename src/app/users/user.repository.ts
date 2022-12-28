@@ -1,4 +1,9 @@
-import { BadRequestException, Injectable, Logger } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  Logger,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from '../../models/user.entity';
 import { Repository } from 'typeorm';
@@ -18,8 +23,8 @@ export class UserRepository {
       const createdUser = await this.userRep.save(newUser);
       return {
         ...createdUser,
-        password: undefined
-      }
+        password: undefined,
+      };
     } catch (error) {
       this.logger.error(
         error.message || 'Ocorreu um erro ao tentar criar um novo usuário',
@@ -27,6 +32,18 @@ export class UserRepository {
       throw new BadRequestException(
         'Ocorreu um erro ao tentar criar um novo usuário',
       );
+    }
+  }
+
+  public async findUserByEmail(email: string): Promise<UserEntity> {
+    try {
+      const user = await this.userRep.findOneByOrFail({
+        email,
+      });
+      return user;
+    } catch (error) {
+      this.logger.error(error?.message);
+      throw new NotFoundException('Usuário não encontrado.');
     }
   }
 }
